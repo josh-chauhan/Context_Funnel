@@ -26,7 +26,7 @@ Be able to funnel context from a pre-existing agent conversation into a new one.
 
 - Python
 - LangGraph and LangChain
-- Hugging Face API with open-source models
+- Ollama for running an open-weight model locally
 - PostgreSQL
 - JavaScript/TypeScript for the web UI
 - Git and VS Code
