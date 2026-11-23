@@ -1,18 +1,12 @@
-import os
-from dotenv import load_dotenv
-from langchain_ollama import ChatOllama
-# Used ollama for offline availability and ease of use. 
-# Code is easy to interchange with other open source models of your liking, however.
-load_dotenv()
-def get_model () -> ChatOllama:
-    return ChatOllama(
+from langchain_core.messages import HumanMessage
+from .graph import chat_graph
 
-        model=os.getenv("OLLAMA_MODEL", "llama3.1:8b"),
-        base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
-        
-    )
-model = get_model()
 
-prompt = input("Ask me a question:\n ")
+prompt = input("Ask me anything:\n ")
 
-print(model.invoke(prompt).content)
+
+result = chat_graph.invoke({
+
+    "messages": [HumanMessage(content=prompt)]
+})
+print(result["messages"][-1].content)
