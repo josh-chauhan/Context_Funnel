@@ -52,3 +52,29 @@ context-funnel/
 │   └── src/
 └── migrations/
 ```
+## Project setup
+
+> [!IMPORTANT]
+> This is setup for the CLI Protoype, final build is accesible through 
+> the link in Vercel.
+
+- In order to run the app succesfully, a few things need to be installed/initialized first:
+
+- Clone the repository and **enter the project folder.**
+
+- Create and activate a virtual environment:
+
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+- Then, start Ollama and make sure the model configured in .env is available. The default is **llama3.1:8b.**
+ - Next, run: 
+    ```bash 
+    python -m pip install -e . 
+ 
+ - ^ Installs dependencies from pyproject.toml
+ 
+ - Then, run:
+    ```bash
+    python -m context_funnel.app
+
