@@ -24,5 +24,7 @@ builder.add_edge(START, "call_model")
 builder.add_edge("call_model", END)
 
 # Keep each conversation's state separate by thread_id
-# shortcut: memory resets when the process stops, use Postgres for persistence.
-chat_graph = builder.compile(checkpointer=InMemorySaver())
+# Using Postgres for persistence.
+def build_chat_graph(checkpointer, store):
+    return builder.compile(checkpointer=checkpointer, store=store)
+
