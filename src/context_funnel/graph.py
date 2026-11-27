@@ -2,6 +2,7 @@ from typing import TypedDict
 from langchain_core.messages import BaseMessage
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
+from langgraph.checkpoint.memory import InMemorySaver
 from typing import Annotated
 from .model import model
 
@@ -22,4 +23,6 @@ builder.add_node("call_model", call_model)
 builder.add_edge(START, "call_model")
 builder.add_edge("call_model", END)
 
-chat_graph = builder.compile()
+# Keep each conversation's state separate by thread_id
+# shortcut: memory resets when the process stops, use Postgres for persistence.
+chat_graph = builder.compile(checkpointer=InMemorySaver())
